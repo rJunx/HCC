@@ -1,0 +1,58 @@
+/*
+ * Simple Arithmetics Grammar
+ * ==========================
+ *
+ * Accepts expressions like "2 * (3 + 4)" and computes their value.
+ */
+ 
+Expression
+  = head:Term tail:(_ ("+" / "-") _ Term)* {
+      if (tail.length == 0)
+      return head;
+        
+      var node = {children : [head]};
+
+      for (var i = 0; i < tail.length; i++) {
+        node.op = tail[i][1];
+        var rhs = tail[i][3];
+
+        node.children.push(rhs);
+      }
+
+      return node;
+    }
+
+Term
+  = head:Factor tail:(_ ("*") _ Factor)* {
+      if (tail.length == 0)
+      return head;
+        
+      var node = {children : [head]};
+        
+      for (var i = 0; i < tail.length; i++) {
+        node.op = tail[i][1];
+        var rhs = tail[i][3];
+
+        if (rhs.op === '*') {
+          node.children = node.children.concat(rhs.children);
+        } else {
+            node.children.push(rhs);
+        }
+      }
+
+      return node;
+    }
+
+Factor
+  = "(" _ expr:Expression _ ")" { return expr; }
+  / Integer
+
+Integer "integer"
+  = ([0-9]+ / ("-")[0-9]+) {
+    var tv = text(); 
+    var v = parseInt(tv, 10); 
+    return { value:tv, isPositive:tv>0 };
+  }
+
+_ "whitespace"
+  = [ \t\n\r]*

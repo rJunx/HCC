@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="/js/jsbn.js"></script>
+		<script src="/js/random.js"></script>
+		<script src="/js/hash.js"></script>
+		<script src="/js/rsa.js"></script>
+		<script src="/js/paillier.js"></script>
+		<script src="/js/hccengine.js"></script>
+		<script src="/js/parser.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<h1>Homomorphic Cloud Calculate Demo</h1>
+				<h3>Support integer addition, subtraction and multiplication</h3>
+				<p>Implemented By Rongjun Xie</p>
+				<p>Contact: s3525356@student.rmit.edu.au</p>
+			</div>
+			<table border="1" cellspacing="0">
+				<tr>
+					<td>
+						<table class="column" id="right-column">
+							<tr>
+								<td>
+									<tr>
+										<td class="content-height">
+											<label for="inputNumbits">Number of bits</label>
+											<input value="512" type="number" id="inputNumbits" min='32' max='1024'>
+											<label>[32-1024]</label>
+										</td>
+									</tr>
+									<tr>
+										<td class="content-height">
+											<label for="cacheKey">Cache Key</label>
+											<input type="checkbox" id="cacheKey">
+										</td>
+									</tr>
+									<tr>
+										<td class="content-height">
+											<h2 class="suggestion top">
+											<div class="step-title">Input Expression</div>
+											</h2>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="textarea-wrapper">
+												<textarea class="code" id="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:400px; height:100px;">2 * (3 - 4)</textarea>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="content-height">
+											<div id="parse-message" class="message disabled">Parser not available.</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="content-height">
+											<h2 id="output-header">Output</h2>
+										<pre id="output" class="disabled">Output not available.</pre>
+									</td>
+								</tr>
+								<tr>
+									<td class="content-height">
+										<input type="button" id="btnCal" value="Calculate" />
+									</td>
+									<td class="content-height">
+										<h5 id="progress"/>
+									</td>
+								</tr>
+								<tr>
+									<td class="content-height">
+										<h2 id="output-header">Time Consumption(ms)</h2>
+										<pre id="timeConsumption"/>
+										</td>
+									</tr>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td>
+									<h2>Key details</h2>
+									<textarea id="key-detail" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="disabled" style="width:500px; height:150px;"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h2>Calculation details</h2>
+									<textarea id="detail" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="disabled" style="width:500px; height:300px;"></textarea>
+								</td>
+							</tr>
+						</table> 
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+	</body>
+</html>
+{% endautoescape %}
